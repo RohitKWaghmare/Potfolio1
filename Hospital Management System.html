@@ -1,0 +1,2308 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MedCare | Hospital Management System</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* ==============================
+           GLOBAL
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            background: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary: #0d6efd;
+            --secondary: #0dcaf0;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --success: #20c997;
+        }
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            color: #64748b;
+            max-width: 650px;
+            margin: 15px auto 0;
+        }
+
+
+        /* ==============================
+           NAVBAR
+        ============================== */
+
+        .navbar {
+            padding: 15px 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 3px 20px rgba(0,0,0,0.06);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary) !important;
+        }
+
+        .navbar-brand i {
+            margin-right: 7px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #334155 !important;
+            margin: 0 6px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+
+        /* ==============================
+           HERO
+        ============================== */
+
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 85% 30%, rgba(13,110,253,0.15), transparent 30%),
+                radial-gradient(circle at 10% 80%, rgba(13,202,240,0.12), transparent 30%),
+                #f8fbff;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1.08;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            color: #64748b;
+            line-height: 1.8;
+            max-width: 620px;
+            margin: 25px 0;
+        }
+
+        .hero-buttons .btn {
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .hero-card {
+            position: relative;
+            padding: 25px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 25px 70px rgba(15,23,42,0.12);
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .card-one {
+            left: -35px;
+            bottom: 70px;
+        }
+
+        .card-two {
+            right: -30px;
+            top: 70px;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+
+        /* ==============================
+           STATS
+        ============================== */
+
+        .stats {
+            margin-top: -45px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .stat-card i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .counter {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-top: 10px;
+        }
+
+        .stat-card p {
+            color: #64748b;
+            margin: 0;
+        }
+
+
+        /* ==============================
+           ABOUT
+        ============================== */
+
+        .about-img {
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            margin: 18px 0;
+            font-weight: 500;
+        }
+
+        .check-item i {
+            color: var(--success);
+            font-size: 22px;
+            margin-right: 12px;
+        }
+
+
+        /* ==============================
+           DEPARTMENT FLIP CARDS
+        ============================== */
+
+        .flip-card {
+            background: transparent;
+            height: 270px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .flip-card-front {
+            background: white;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.07);
+        }
+
+        .flip-card-front i {
+            font-size: 55px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .flip-card-front h5 {
+            font-weight: 700;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back h5 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+
+        /* ==============================
+           SERVICE CARDS
+        ============================== */
+
+        .service-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            height: 100%;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+            transition: 0.4s;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(13,110,253,0.2);
+            box-shadow: 0 20px 50px rgba(13,110,253,0.12);
+        }
+
+        .service-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            background: rgba(13,110,253,0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h5 {
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+
+        /* ==============================
+           DOCTORS
+        ============================== */
+
+        .doctor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+            transition: 0.4s;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .doctor-img {
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .doctor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .doctor-card:hover .doctor-img img {
+            transform: scale(1.08);
+        }
+
+        .doctor-info {
+            padding: 25px;
+        }
+
+        .doctor-info h5 {
+            font-weight: 700;
+        }
+
+        .doctor-info p {
+            color: #64748b;
+        }
+
+        .social-icons a {
+            width: 35px;
+            height: 35px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 50%;
+            margin-right: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+
+        /* ==============================
+           APPOINTMENT
+        ============================== */
+
+        .appointment {
+            background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+            color: white;
+        }
+
+        .appointment-box {
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            color: #1f2937;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .form-control,
+        .form-select {
+            padding: 13px;
+            border-radius: 10px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            box-shadow: 0 0 0 3px rgba(13,110,253,0.12);
+        }
+
+
+        /* ==============================
+           TESTIMONIAL
+        ============================== */
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+            height: 100%;
+        }
+
+        .stars {
+            color: #f59e0b;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+
+        /* ==============================
+           CTA
+        ============================== */
+
+        .cta {
+            background: var(--dark);
+            border-radius: 30px;
+            padding: 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta h2 {
+            font-weight: 800;
+        }
+
+
+        /* ==============================
+           CONTACT
+        ============================== */
+
+        .contact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+        }
+
+        .contact-card i {
+            font-size: 28px;
+            color: var(--primary);
+            margin-right: 15px;
+        }
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            background: #020617;
+            color: #94a3b8;
+            padding: 60px 0 25px;
+        }
+
+        footer h5 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            margin-top: 35px;
+            padding-top: 20px;
+        }
+
+
+        /* ==============================
+           SCROLL ANIMATION
+        ============================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+
+        @media(max-width: 991px) {
+
+            .hero {
+                padding: 100px 0;
+            }
+
+            .hero-card {
+                margin-top: 50px;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+        }
+
+        @media(max-width: 576px) {
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta {
+                padding: 35px 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<nav class="navbar navbar-expand-lg fixed-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="#home">
+            <i class="bi bi-heart-pulse-fill"></i>
+            MedCare
+        </a>
+
+        <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#departments">Departments</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#doctors">Doctors</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+
+                    <button
+                        class="btn btn-primary rounded-pill px-4"
+                        data-bs-toggle="modal"
+                        data-bs-target="#appointmentModal">
+
+                        Book Appointment
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-3">
+                    <i class="bi bi-shield-check"></i>
+                    Trusted Healthcare Management
+                </span>
+
+                <h1>
+                    Smart Healthcare.
+                    <span>Better Management.</span>
+                </h1>
+
+                <p class="hero-text">
+
+                    A modern Hospital Management System designed to
+                    simplify patient management, appointments,
+                    doctors, departments and healthcare services.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#appointmentModal">
+
+                        <i class="bi bi-calendar-check"></i>
+                        Book Appointment
+
+                    </button>
+
+                    <a href="#departments"
+                        class="btn btn-outline-primary">
+
+                        Explore Departments
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <div class="hero-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80"
+                        alt="Doctor">
+
+                    <div class="floating-card card-one">
+
+                        <div class="d-flex align-items-center">
+
+                            <i class="bi bi-check-circle-fill text-success fs-3 me-2"></i>
+
+                            <div>
+
+                                <strong>24/7 Emergency</strong>
+
+                                <small class="d-block text-muted">
+                                    Always available
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card card-two">
+
+                        <strong class="text-primary">
+                            <i class="bi bi-people-fill"></i>
+                            25K+
+                        </strong>
+
+                        <small class="d-block text-muted">
+                            Happy Patients
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     STATS
+========================================= -->
+
+<div class="container stats">
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <i class="bi bi-people"></i>
+
+                <div class="counter" data-target="25000">
+                    0
+                </div>
+
+                <p>Patients Served</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <i class="bi bi-person-badge"></i>
+
+                <div class="counter" data-target="120">
+                    0
+                </div>
+
+                <p>Expert Doctors</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <i class="bi bi-hospital"></i>
+
+                <div class="counter" data-target="15">
+                    0
+                </div>
+
+                <p>Departments</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3">
+
+            <div class="stat-card">
+
+                <i class="bi bi-award"></i>
+
+                <div class="counter" data-target="20">
+                    0
+                </div>
+
+                <p>Years Experience</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     ABOUT
+========================================= -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6 reveal">
+
+                <div class="about-img">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=900&q=80"
+                        alt="Hospital">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 reveal">
+
+                <span class="text-primary fw-bold">
+                    ABOUT MEDCARE
+                </span>
+
+                <h2 class="section-title mt-2">
+
+                    Technology Meets
+                    <span class="text-primary">
+                        Healthcare
+                    </span>
+
+                </h2>
+
+                <p class="text-muted mt-3">
+
+                    MedCare is a conceptual Hospital Management System
+                    designed to demonstrate how modern technology can
+                    improve hospital administration and patient
+                    experiences.
+
+                </p>
+
+                <div class="check-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Easy patient registration
+                </div>
+
+                <div class="check-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Online appointment management
+                </div>
+
+                <div class="check-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Doctor and department management
+                </div>
+
+                <div class="check-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Centralized healthcare information
+                </div>
+
+                <a href="#services"
+                    class="btn btn-primary mt-3 px-4">
+
+                    Explore Services
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     DEPARTMENTS
+========================================= -->
+
+<section id="departments" class="bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5 reveal">
+
+            <span class="text-primary fw-bold">
+                OUR DEPARTMENTS
+            </span>
+
+            <h2 class="section-title mt-2">
+                Specialized Medical Departments
+            </h2>
+
+            <p class="section-subtitle">
+
+                Hover over a department to discover
+                its healthcare services.
+
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- Card 1 -->
+
+            <div class="col-md-6 col-lg-3 reveal">
+
+                <div class="flip-card">
+
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+
+                            <i class="bi bi-heart-pulse"></i>
+
+                            <h5>Cardiology</h5>
+
+                            <p class="text-muted">
+                                Heart & cardiovascular care
+                            </p>
+
+                        </div>
+
+                        <div class="flip-card-back">
+
+                            <i class="bi bi-heart-pulse fs-1 mb-3"></i>
+
+                            <h5>Cardiology</h5>
+
+                            <p>
+                                Advanced diagnosis and treatment
+                                for heart-related conditions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 2 -->
+
+            <div class="col-md-6 col-lg-3 reveal">
+
+                <div class="flip-card">
+
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+
+                            <i class="bi bi-activity"></i>
+
+                            <h5>Neurology</h5>
+
+                            <p class="text-muted">
+                                Brain & nervous system
+                            </p>
+
+                        </div>
+
+                        <div class="flip-card-back">
+
+                            <i class="bi bi-activity fs-1 mb-3"></i>
+
+                            <h5>Neurology</h5>
+
+                            <p>
+                                Specialized neurological
+                                consultation and treatment.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 3 -->
+
+            <div class="col-md-6 col-lg-3 reveal">
+
+                <div class="flip-card">
+
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+
+                            <i class="bi bi-person-hearts"></i>
+
+                            <h5>Pediatrics</h5>
+
+                            <p class="text-muted">
+                                Child healthcare
+                            </p>
+
+                        </div>
+
+                        <div class="flip-card-back">
+
+                            <i class="bi bi-person-hearts fs-1 mb-3"></i>
+
+                            <h5>Pediatrics</h5>
+
+                            <p>
+                                Complete healthcare services
+                                for children and infants.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Card 4 -->
+
+            <div class="col-md-6 col-lg-3 reveal">
+
+                <div class="flip-card">
+
+                    <div class="flip-card-inner">
+
+                        <div class="flip-card-front">
+
+                            <i class="bi bi-bone"></i>
+
+                            <h5>Orthopedics</h5>
+
+                            <p class="text-muted">
+                                Bones & joints
+                            </p>
+
+                        </div>
+
+                        <div class="flip-card-back">
+
+                            <i class="bi bi-bone fs-1 mb-3"></i>
+
+                            <h5>Orthopedics</h5>
+
+                            <p>
+                                Diagnosis and treatment of
+                                bone and joint conditions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     SERVICES
+========================================= -->
+
+<section id="services">
+
+    <div class="container">
+
+        <div class="text-center mb-5 reveal">
+
+            <span class="text-primary fw-bold">
+                OUR SERVICES
+            </span>
+
+            <h2 class="section-title mt-2">
+                Healthcare Services
+            </h2>
+
+            <p class="section-subtitle">
+                Designed to provide a smooth and efficient
+                healthcare experience.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-calendar2-check"></i>
+                    </div>
+
+                    <h5>Appointment Management</h5>
+
+                    <p>
+                        Schedule and manage appointments
+                        with doctors quickly and efficiently.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-file-medical"></i>
+                    </div>
+
+                    <h5>Medical Records</h5>
+
+                    <p>
+                        Organize patient medical history,
+                        diagnoses and treatment information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-capsule"></i>
+                    </div>
+
+                    <h5>Pharmacy Management</h5>
+
+                    <p>
+                        Manage medicines, prescriptions
+                        and pharmacy inventory.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-receipt"></i>
+                    </div>
+
+                    <h5>Billing Management</h5>
+
+                    <p>
+                        Generate and manage patient
+                        billing and payment information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-droplet-half"></i>
+                    </div>
+
+                    <h5>Laboratory Services</h5>
+
+                    <p>
+                        Manage diagnostic tests and
+                        laboratory reports.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 reveal">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-hospital"></i>
+                    </div>
+
+                    <h5>Emergency Care</h5>
+
+                    <p>
+                        Provide quick access to emergency
+                        healthcare services.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     DOCTORS
+========================================= -->
+
+<section id="doctors" class="bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                OUR TEAM
+            </span>
+
+            <h2 class="section-title mt-2">
+                Meet Our Doctors
+            </h2>
+
+            <p class="section-subtitle">
+                Experienced professionals dedicated
+                to patient care.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=80"
+                            alt="Doctor">
+
+                    </div>
+
+                    <div class="doctor-info">
+
+                        <h5>Dr. Sarah Wilson</h5>
+
+                        <p>
+                            Senior Cardiologist
+                        </p>
+
+                        <div class="social-icons">
+
+                            <a href="#">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-envelope"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-telephone"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80"
+                            alt="Doctor">
+
+                    </div>
+
+                    <div class="doctor-info">
+
+                        <h5>Dr. Emily Carter</h5>
+
+                        <p>
+                            Neurologist
+                        </p>
+
+                        <div class="social-icons">
+
+                            <a href="#">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-envelope"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-telephone"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-img">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=700&q=80"
+                            alt="Doctor">
+
+                    </div>
+
+                    <div class="doctor-info">
+
+                        <h5>Dr. Michael Brown</h5>
+
+                        <p>
+                            Orthopedic Specialist
+                        </p>
+
+                        <div class="social-icons">
+
+                            <a href="#">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-envelope"></i>
+                            </a>
+
+                            <a href="#">
+                                <i class="bi bi-telephone"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     APPOINTMENT
+========================================= -->
+
+<section class="appointment">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-5">
+
+                <span class="badge bg-white text-primary px-3 py-2">
+                    QUICK APPOINTMENT
+                </span>
+
+                <h2 class="display-5 fw-bold mt-3">
+                    Take the first step toward better healthcare.
+                </h2>
+
+                <p class="mt-3 opacity-75">
+
+                    Choose a department, select a doctor
+                    and request your appointment.
+
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-7">
+
+                <div class="appointment-box">
+
+                    <h4 class="fw-bold mb-4">
+                        Request an Appointment
+                    </h4>
+
+                    <form id="appointmentForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Full Name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    placeholder="Email Address"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <input
+                                    type="tel"
+                                    class="form-control"
+                                    placeholder="Mobile Number"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <select class="form-select" required>
+
+                                    <option value="">
+                                        Select Department
+                                    </option>
+
+                                    <option>
+                                        Cardiology
+                                    </option>
+
+                                    <option>
+                                        Neurology
+                                    </option>
+
+                                    <option>
+                                        Pediatrics
+                                    </option>
+
+                                    <option>
+                                        Orthopedics
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    required>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <select class="form-select" required>
+
+                                    <option value="">
+                                        Preferred Time
+                                    </option>
+
+                                    <option>
+                                        09:00 AM
+                                    </option>
+
+                                    <option>
+                                        11:00 AM
+                                    </option>
+
+                                    <option>
+                                        02:00 PM
+                                    </option>
+
+                                    <option>
+                                        04:00 PM
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <textarea
+                                    class="form-control"
+                                    rows="3"
+                                    placeholder="Message / Symptoms"></textarea>
+
+                            </div>
+
+
+                            <div class="col-12">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary w-100 py-3">
+
+                                    <i class="bi bi-calendar-check"></i>
+                                    Submit Appointment Request
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     TESTIMONIALS
+========================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                PATIENT EXPERIENCE
+            </span>
+
+            <h2 class="section-title mt-2">
+                What Patients Say
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The appointment process was simple
+                        and the interface was very easy to use."
+                    </p>
+
+                    <strong>
+                        — Rahul Sharma
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The hospital information was well
+                        organized and easy to understand."
+                    </p>
+
+                    <strong>
+                        — Priya Patel
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "A clean and professional healthcare
+                        management experience."
+                    </p>
+
+                    <strong>
+                        — Amit Kumar
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="cta text-center">
+
+            <h2>
+                Need Medical Assistance?
+            </h2>
+
+            <p class="text-white-50 mt-3">
+                Our healthcare team is ready to help.
+            </p>
+
+            <button
+                class="btn btn-light px-4 py-3 mt-2 fw-semibold"
+                data-bs-toggle="modal"
+                data-bs-target="#appointmentModal">
+
+                Book an Appointment
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CONTACT
+========================================= -->
+
+<section id="contact" class="bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="text-primary fw-bold">
+                CONTACT US
+            </span>
+
+            <h2 class="section-title mt-2">
+                Get In Touch
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+
+                <div class="contact-card d-flex align-items-center">
+
+                    <i class="bi bi-geo-alt-fill"></i>
+
+                    <div>
+                        <strong>Address</strong>
+                        <p class="mb-0 text-muted">
+                            Main Road, Healthcare City
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card d-flex align-items-center">
+
+                    <i class="bi bi-telephone-fill"></i>
+
+                    <div>
+                        <strong>Phone</strong>
+                        <p class="mb-0 text-muted">
+                            +91 98765 43210
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card d-flex align-items-center">
+
+                    <i class="bi bi-envelope-fill"></i>
+
+                    <div>
+                        <strong>Email</strong>
+                        <p class="mb-0 text-muted">
+                            support@medcare.com
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <div class="appointment-box">
+
+                    <h4 class="fw-bold mb-4">
+                        Send Us a Message
+                    </h4>
+
+                    <form id="contactForm">
+
+                        <input
+                            type="text"
+                            class="form-control mb-3"
+                            placeholder="Your Name"
+                            required>
+
+                        <input
+                            type="email"
+                            class="form-control mb-3"
+                            placeholder="Your Email"
+                            required>
+
+                        <textarea
+                            class="form-control mb-3"
+                            rows="5"
+                            placeholder="Your Message"
+                            required></textarea>
+
+                        <button
+                            class="btn btn-primary px-4">
+
+                            Send Message
+                            <i class="bi bi-send"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-5">
+
+                <h5>
+                    <i class="bi bi-heart-pulse-fill text-primary"></i>
+                    MedCare
+                </h5>
+
+                <p>
+                    A modern Hospital Management System
+                    frontend project demonstrating responsive
+                    UI/UX design and interactive web development.
+                </p>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <h5>Quick Links</h5>
+
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#doctors">Doctors</a>
+
+            </div>
+
+
+            <div class="col-6 col-lg-2">
+
+                <h5>Departments</h5>
+
+                <a href="#departments">Cardiology</a>
+                <a href="#departments">Neurology</a>
+                <a href="#departments">Pediatrics</a>
+                <a href="#departments">Orthopedics</a>
+
+            </div>
+
+
+            <div class="col-lg-3">
+
+                <h5>Follow Us</h5>
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom text-center">
+
+            <small>
+                © 2026 MedCare Hospital Management System.
+                Designed & Developed using HTML, CSS,
+                JavaScript & Bootstrap 5.
+            </small>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================
+     APPOINTMENT MODAL
+========================================= -->
+
+<div class="modal fade" id="appointmentModal" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 rounded-4">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title fw-bold">
+                    <i class="bi bi-calendar-check text-primary"></i>
+                    Book Appointment
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body p-4">
+
+                <form id="modalAppointmentForm">
+
+                    <input
+                        type="text"
+                        class="form-control mb-3"
+                        placeholder="Patient Name"
+                        required>
+
+                    <input
+                        type="tel"
+                        class="form-control mb-3"
+                        placeholder="Mobile Number"
+                        required>
+
+                    <select
+                        class="form-select mb-3"
+                        required>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                        <option>
+                            Cardiology
+                        </option>
+
+                        <option>
+                            Neurology
+                        </option>
+
+                        <option>
+                            Pediatrics
+                        </option>
+
+                        <option>
+                            Orthopedics
+                        </option>
+
+                    </select>
+
+                    <input
+                        type="date"
+                        class="form-control mb-3"
+                        required>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-100 py-2">
+
+                        Confirm Appointment
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+    /* ==============================
+       SCROLL REVEAL
+    ============================== */
+
+    const revealElements =
+        document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+
+        revealElements.forEach(element => {
+
+            const windowHeight =
+                window.innerHeight;
+
+            const elementTop =
+                element.getBoundingClientRect().top;
+
+            if (elementTop < windowHeight - 100) {
+
+                element.classList.add('active');
+
+            }
+
+        });
+
+    }
+
+    window.addEventListener(
+        'scroll',
+        revealOnScroll
+    );
+
+    revealOnScroll();
+
+
+
+    /* ==============================
+       COUNTER ANIMATION
+    ============================== */
+
+    const counters =
+        document.querySelectorAll('.counter');
+
+    let counterStarted = false;
+
+    function startCounters() {
+
+        if (counterStarted) return;
+
+        const statsSection =
+            document.querySelector('.stats');
+
+        const position =
+            statsSection.getBoundingClientRect().top;
+
+        if (position < window.innerHeight - 100) {
+
+            counterStarted = true;
+
+            counters.forEach(counter => {
+
+                const target =
+                    Number(counter.dataset.target);
+
+                let current = 0;
+
+                const increment =
+                    target / 100;
+
+                const updateCounter = () => {
+
+                    current += increment;
+
+                    if (current < target) {
+
+                        counter.innerText =
+                            Math.floor(current).toLocaleString();
+
+                        requestAnimationFrame(
+                            updateCounter
+                        );
+
+                    } else {
+
+                        counter.innerText =
+                            target.toLocaleString() + "+";
+
+                    }
+
+                };
+
+                updateCounter();
+
+            });
+
+        }
+
+    }
+
+    window.addEventListener(
+        'scroll',
+        startCounters
+    );
+
+    startCounters();
+
+
+
+    /* ==============================
+       APPOINTMENT FORM
+    ============================== */
+
+    document
+        .getElementById('appointmentForm')
+        .addEventListener('submit', function(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Appointment request submitted successfully!"
+            );
+
+            this.reset();
+
+        });
+
+
+
+    /* ==============================
+       MODAL APPOINTMENT
+    ============================== */
+
+    document
+        .getElementById('modalAppointmentForm')
+        .addEventListener('submit', function(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Your appointment has been requested successfully!"
+            );
+
+            this.reset();
+
+            const modalElement =
+                document.getElementById(
+                    'appointmentModal'
+                );
+
+            const modal =
+                bootstrap.Modal.getInstance(
+                    modalElement
+                );
+
+            modal.hide();
+
+        });
+
+
+
+    /* ==============================
+       CONTACT FORM
+    ============================== */
+
+    document
+        .getElementById('contactForm')
+        .addEventListener('submit', function(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Thank you! Your message has been submitted."
+            );
+
+            this.reset();
+
+        });
+
+</script>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>
+```
